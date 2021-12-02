@@ -1,37 +1,37 @@
+import React, { useEffect, useState } from "react";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 
-
-const arr = [
-  {
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 12999,
-    imageUrl: '/img/sneakers/1.jpg'
-  },
-  {
-    title: 'Мужские Кроссовки Nike Air Max 270',
-    price: 16799,
-    imageUrl: '/img/sneakers/2.jpg'
-  },
-  {
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 8499,
-    imageUrl: '/img/sneakers/3.jpg'
-  },
-  {
-    title: 'Кроссовки Puma X Aka Boku Future Rider',
-    price: 2899,
-    imageUrl: '/img/sneakers/4.jpg'
-  }
-];
-
 function App() {
+  const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false);
+
+  useEffect(() => {
+
+    fetch('https://61a3f974d5e8330017292209.mockapi.io/react-sneakers/items')
+      .then(res => res.json())
+      .then(json => setItems(json))
+      
+    // .catch(alert("Опаньки... Что-то пошло не так! Чекни интернет плиз :)"))
+  }, [])
+
+  const onAddToCard = (obj) => {
+    // setCartItems([...cartItems, obj]) так не правильно
+    setCartItems(prev => [...prev, obj ])
+    // if (cartItems === obj) {
+    //   return setCartItems(prev => [...prev])
+    // }
+  }
+
+   
   return (
+
     <div className="wrapper clear">
 
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <div className="content p-40">
 
@@ -43,19 +43,22 @@ function App() {
           </div>
         </div>
 
-        <div className="d-flex">
-          {arr.map(obj => (
+        <div className="d-flex flex-wrap">
+          
+          {items.map(item => (
             <Card
-              title={obj.title}
-              price={obj.price}
-              imageUrl={obj.imageUrl}
-              onClick={() => console.log(obj)} />
+              title={item.title}
+              price={item.price}
+              imageUrl={item.imageUrl}
+              onFavorite={() => console.log('Добавили в избранное')}
+              onPlus={obj => onAddToCard(obj)} />
           ))}
         </div>
 
       </div>
     </div>
   )
+
 }
 
 export default App;

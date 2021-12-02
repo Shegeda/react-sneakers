@@ -20,6 +20,10 @@ body {
 
 header {
   border-bottom: 1px solid #EAEAEA;
+
+  .basketPointer{
+    cursor: pointer;
+  }
   img {
     margin-right: 15px;
   }
@@ -33,16 +37,6 @@ header {
   h1 {
     margin: 0;
   }
-}
-
-.button {
-  background: #FFFFFF;
-  border: 1px solid #F2F2F2;
-  box-sizing: border-box;
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
 }
 
 .search-block {
