@@ -39,10 +39,21 @@ header {
   }
 }
 
+
 .search-block {
   border: 1px solid #F3F3F3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
+
+  .clear {
+    position: absolute;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    top: 14px;
+    right: 15px;
+  }
 
   input {
     border: 0;
@@ -72,6 +83,52 @@ header {
   background: #FFFFFF;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 30px;
+}
+
+.cartEmpty {
+  text-align: center;
+  margin-top: 150px;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+    margin-left: 40px;
+  }
+
+  .greenButton {
+    width: 245px;
+    margin-top: 20px;
+    height: 55px;
+    background: #9DD558;
+    border-radius: 18px;
+    border: 0;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 20px;
+      transition: transform 0.15s ease-in-out;
+    }
+
+    &:active {
+      background: darken($color: #9DD558, $amount: 5%);
+      img {
+        transform: rotate(180deg) translateX(15px);
+      }
+    }
+  }
 }
 
 .items {
