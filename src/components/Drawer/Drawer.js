@@ -42,7 +42,7 @@ const Drawer = ({ onClose, onRemove, items = [], opened }) => {
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
 
       <div className={styles.drawer}>
-        <h2 onClick={onClose} className=" d-flex justify-between mb-30">Корзина<img className="removeBtn" src="/img/btn-remove.svg" alt="Close" />
+        <h2 onClick={onClose} className=" d-flex justify-between mb-30">Корзина<img className="removeBtn" src="img/btn-remove.svg" alt="Close" />
         </h2>
 
         {
@@ -57,7 +57,7 @@ const Drawer = ({ onClose, onRemove, items = [], opened }) => {
                         <p className="mb-5">{obj.title}</p>
                         <b>{obj.price} грн.</b>
                       </div>
-                      <img className="removeBtn" onClick={() => onRemove(obj.id)} src="/img/btn-remove.svg" alt="Remove" />
+                      <img className="removeBtn" onClick={() => onRemove(obj.id)} src="img/btn-remove.svg" alt="Remove" />
                     </div>
                   ))
                 }
@@ -76,14 +76,14 @@ const Drawer = ({ onClose, onRemove, items = [], opened }) => {
                     <b>{Math.round(totalPrice / 100 * 5)} грн. </b>
                   </li>
                 </ul>
-                <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ <img src="/img/arrow.svg" alt="Arrow" /></button>
+                <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ <img src="img/arrow.svg" alt="Arrow" /></button>
               </div>
             </div>
           ) : (
             <Info
               title={isOrderComplete ? "Заказ оформлен" : "Корзина пустая"}
               description={isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кросовок, чтобы сделать заказ"}
-              image={isOrderComplete ? "/img/complete-order.png" : "/img/empty-cart.jpg"}
+              image={isOrderComplete ? "img/complete-order.png" : "img/empty-cart.jpg"}
             />
 
           )}
